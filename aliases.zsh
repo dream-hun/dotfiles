@@ -38,6 +38,7 @@ alias gotodotfiles="cd ~/.dotfiles"
 alias gotosites="cd ~/Sites"
 alias gototests="cd ~/Sites/Tests"
 alias gotojarvy="cd ~/Sites/jarvy"
+alias gotodemos="cd ~/Sites/demos"
 
 #-----------------------------------------------------------------------------------#
 #	*END* GOTO
