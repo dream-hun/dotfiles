@@ -66,6 +66,7 @@ gsa ()
 # Usage: gh-new-private my-repo-name
 function gh-new-private() {
 	local repo_name="$1"
+	local repo_url
 
 	if [ -z "$repo_name" ]; then
 		echo "Usage: gh-new-private <repo-name>"
@@ -77,7 +78,10 @@ function gh-new-private() {
 		return 1
 	fi
 
-	gh repo create "christophrumpel/$repo_name" --private --source=. --push
+	gh repo create "christophrumpel/$repo_name" --private --source=. --push || return 1
+
+	repo_url="https://github.com/christophrumpel/$repo_name"
+	echo "Repo created: $repo_url"
 }
 
 # Invite jarvy-cr to the current GitHub repo with push access
