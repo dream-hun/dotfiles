@@ -18,3 +18,6 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 # Load PhpStorm Launcher
 export PATH="/Applications/PhpStorm.app/Contents/MacOS:$PATH"
 
+# Amp
+export PATH="$HOME/.local/bin:$PATH"
+

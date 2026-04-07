@@ -47,3 +47,6 @@ export HERD_PHP_74_INI_SCAN_DIR="/Users/christophrumpel/Library/Application Supp
 
 # Herd injected PHP 8.1 configuration.
 export HERD_PHP_81_INI_SCAN_DIR="/Users/christophrumpel/Library/Application Support/Herd/config/php/81/"
+
+# opencode
+export PATH=/Users/christophrumpel/.opencode/bin:$PATH
