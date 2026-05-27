@@ -1,50 +1,80 @@
-# Christoph Rumpel's Dotfiles
+# Jacques's Dotfiles
 
-This is a fork from [Dries Vints](https://github.com/driesvints/dotfiles)'s dotfiles. Check out his detailed documentation about all the files. I just changed a few things to better fit my needs.
+Originally forked from [Christoph Rumpel](https://github.com/christophrumpel/dotfiles), adapted for Ubuntu Linux.
 
-Be careful when using these dotfiles because they change a lot of MacOS settings and install all the apps I need.
+## System
+
+- **OS:** Ubuntu 26.04 LTS (Resolute Raccoon)
+- **Shell:** Zsh + Oh My Zsh
+- **Prompt:** Starship
+- **Terminal:** Ghostty
+- **Package manager:** Homebrew (Linuxbrew)
+- **Node:** NVM
+- **PHP:** Linuxbrew + Composer
 
 ## Backup Checklist
 
 - Did you commit and push any changes/branches to your git repositories?
-- Did you copy your .env files to a safe place if they are not casual?
-- Did you backup your IDE settings? (e.g. PhpStorm)
+- Did you copy your `.env` files to a safe place?
+- Did you backup your IDE settings? (e.g. PhpStorm / JetBrains)
 - Did you backup local databases you need?
 - Did you remember to save all important documents from non-cloud directories?
 - Did you save all of your work from apps which aren't synced through cloud?
 
 ## Installation
 
-1. `Update macOS` to the latest version with the App Store
-2. `Clone dotfiles` to ~/.dotfiles (you will be asked to download command line tools)
+1. **Update Ubuntu** to the latest version
     ```zsh
-    git clone https://github.com/christophrumpel/dotfiles.git ~/.dotfiles
+    sudo apt update && sudo apt upgrade
     ```
-3. `Run Installation` script
+2. **Install Zsh and Oh My Zsh**
+    ```zsh
+    sudo apt install zsh
+    chsh -s $(which zsh)
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+3. **Install zsh-autosuggestions plugin**
+    ```zsh
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    ```
+4. **Clone dotfiles** to `~/.dotfiles`
+    ```zsh
+    git clone https://github.com/mbabazijacques/dotfiles.git ~/.dotfiles
+    ```
+5. **Run installation script**
     ```zsh
     ~/.dotfiles/install.sh
     ```
-4. Install 1Password & enable `1Password SSH Agent` (check if it works with `ssh -vv git@github.com`)
-5. `Run clone script` to install needed repos
+6. **Install Ghostty** (if not already installed)
     ```zsh
-   ~/.dotfiles/clone.sh
+    sudo snap install ghostty --classic
     ```
-6. `Log in to Dropbox` and sync folders
-7. `Restart your computer` to finalize  the process
-8. `Set up Raycast`
-
+7. **Set up SSH keys** — copy your SSH config to `~/.ssh/config`
+8. **Restart your terminal** to finalize the process
 
 ## Additional Steps
 
 - Install apps manually
-    - Davinci Resolve
-    - Pixelmator Pro Demo (Dropbox/Backups)
+    - PhpStorm (JetBrains Toolbox: https://www.jetbrains.com/toolbox-app/)
+    - TablePlus (https://tableplus.com/linux)
 - Custom Settings
-    - Copy ssh config from 1Password to `~/.ssh/config` (automate?)
-    - PhpStorm: enable repository sync `https://github.com/christophrumpel/phpstorm-settings`
-- Set Permissions
-    - Bartender
+    - PhpStorm: enable settings sync or restore from backup
+- Fonts
+    - Install FiraCode Nerd Font (used by Ghostty config):
+        ```zsh
+        sudo apt install fonts-firacode
+        ```
+        Or download the Nerd Font variant from https://www.nerdfonts.com/font-downloads
 
-## Still Missing
+## What Each File Does
 
-- Activate right mouse click 
+| File | Purpose |
+|------|---------|
+| `zshrc` | Main Zsh config — symlinked to `~/.zshrc` |
+| `aliases.zsh` | Shell aliases — auto-loaded by Oh My Zsh custom |
+| `path.zsh` | PATH exports — auto-loaded by Oh My Zsh custom |
+| `starship.toml` | Starship prompt config — symlinked to `~/.config/starship.toml` |
+| `ghostty.conf` | Ghostty terminal config — symlinked to `~/.config/ghostty/config` |
+| `Brewfile.linux` | Homebrew CLI packages for Linux |
+| `install.sh` | Bootstrap script for a new Ubuntu machine |
+| `clone.sh` | Clone personal project repos after install |

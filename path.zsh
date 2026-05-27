@@ -15,8 +15,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Load custom commands
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
-# Load PhpStorm Launcher
-export PATH="/Applications/PhpStorm.app/Contents/MacOS:$PATH"
+# Linuxbrew
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 
 # Amp
 export PATH="$HOME/.local/bin:$PATH"

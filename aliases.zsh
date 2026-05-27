@@ -144,7 +144,7 @@ alias clearlogs='truncate -s 0 $PWD/storage/logs/*.log'
 #-----------------------------------------------------------------------------------#
 
 alias hosts='sudo subl /etc/hosts'
-alias vhosts='sudo subl /etc/apache2/extra/httpd-vhosts.conf'
+alias vhosts='sudo subl /etc/apache2/sites-available/000-default.conf'
 
 #-----------------------------------------------------------------------------------#
 #	*END* HOSTS
@@ -156,7 +156,7 @@ alias vhosts='sudo subl /etc/apache2/extra/httpd-vhosts.conf'
 #-----------------------------------------------------------------------------------#
 
 # IP addresses
-alias ip_intern="ipconfig getifaddr en0"
+alias ip_intern="hostname -I | awk '{print \$1}'"
 alias ip_extern="curl ipecho.net/plain; echo"
 
 
@@ -208,11 +208,11 @@ fi
 #-----------------------------------------------------------------------------------#
 
 # File size
-alias fs="stat -f \"%z bytes\""
+alias fs="stat -c \"%s bytes\""
 
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+# Show/hide hidden files (macOS Finder - not applicable on Linux)
+# alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+# alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 
 nd ()
@@ -230,9 +230,9 @@ nd ()
 #	*START* SPECIALS
 #-----------------------------------------------------------------------------------#
 
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+# Hide/show desktop icons (macOS Finder - not applicable on Linux)
+# alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+# alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 #-----------------------------------------------------------------------------------#
 #	*END* SPECIALS

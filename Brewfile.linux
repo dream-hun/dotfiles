@@ -1,0 +1,15 @@
+# CLI tools — Linux-compatible subset of Brewfile
+brew 'bash'
+brew 'bat'
+brew 'coreutils'
+brew 'git'
+brew 'gh'
+brew 'grep'
+brew 'httpie'
+brew 'trash'
+brew 'tree'
+
+# Development
+brew 'composer'
+brew 'node'
+brew 'yarn'
