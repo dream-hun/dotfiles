@@ -1,5 +1,5 @@
-# Load Composer tools
-export PATH="$HOME/.composer/vendor/bin:$PATH"
+# Load Composer tools (macOS uses ~/.composer, Linux uses ~/.config/composer per XDG spec)
+export PATH="$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:$PATH"
 
 # Use project specific binaries before global ones
 export PATH="node_modules/.bin:vendor/bin:$PATH"
