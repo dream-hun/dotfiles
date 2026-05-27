@@ -62,6 +62,59 @@ gsa ()
 	git reset $(git commit-tree HEAD^{tree} -m \"${1:-A new start}\");
 }
 
+# Create a new private GitHub repo from the current local git project and push it
+# Usage: gh-new-private my-repo-name
+function gh-new-private() {
+	local repo_name="$1"
+	local repo_url
+
+	if [ -z "$repo_name" ]; then
+		echo "Usage: gh-new-private <repo-name>"
+		return 1
+	fi
+
+	if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+		echo "Not inside a git repository."
+		return 1
+	fi
+
+	gh repo create "christophrumpel/$repo_name" --private --source=. --push || return 1
+
+	repo_url="https://github.com/christophrumpel/$repo_name"
+	echo "Repo created: $repo_url"
+}
+
+# Invite jarvy-cr to the current GitHub repo with push access
+# Usage: gh-add-jarvy
+function gh-add-jarvy() {
+	local remote_url repo_slug
+
+	if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+		echo "Not inside a git repository."
+		return 1
+	fi
+
+	remote_url=$(git remote get-url origin 2>/dev/null)
+
+	if [ -z "$remote_url" ]; then
+		echo "No origin remote found."
+		return 1
+	fi
+
+	repo_slug=$(echo "$remote_url" | sed -E 's#(git@github.com:|https://github.com/)##' | sed -E 's#\.git$##')
+
+	if [ -z "$repo_slug" ]; then
+		echo "Could not detect GitHub repo from origin remote."
+		return 1
+	fi
+
+	gh api \
+		-X PUT \
+		"repos/$repo_slug/collaborators/jarvy-cr" \
+		-f permission=push
+
+	echo "Invited jarvy-cr to $repo_slug with push access."
+}
 
 #-----------------------------------------------------------------------------------#
 #	*END* GIT
