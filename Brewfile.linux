@@ -6,7 +6,6 @@ brew 'git'
 brew 'gh'
 brew 'grep'
 brew 'httpie'
-brew 'trash'
 brew 'tree'
 
 # Development
