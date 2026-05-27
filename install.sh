@@ -26,20 +26,17 @@ else
 fi
 
 #-----------------------------------------------------------------------------------#
-# Starship prompt
+# Spaceship ZSH theme
 #-----------------------------------------------------------------------------------#
 
-echo "Installing Starship..."
-if command -v starship > /dev/null 2>&1; then
-    echo "Starship is already installed"
+echo "Installing Spaceship ZSH theme..."
+SPACESHIP_DIR="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship-prompt"
+if [ -d "$SPACESHIP_DIR" ]; then
+    echo "Spaceship already installed"
 else
-    sudo mkdir -p /usr/local/bin
-    if curl -sS https://starship.rs/install.sh | sh; then
-        echo "Starship installed successfully"
-    else
-        echo "Failed to install Starship" >&2
-        exit 1
-    fi
+    git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$SPACESHIP_DIR"
+    ln -sf "$SPACESHIP_DIR/spaceship.zsh-theme" "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/spaceship.zsh-theme"
+    echo "Spaceship installed"
 fi
 
 #-----------------------------------------------------------------------------------#
@@ -69,11 +66,6 @@ echo "Linked .zshrc"
 ln -sf "$DOTFILES/aliases.zsh" "$HOME/.oh-my-zsh/custom/aliases.zsh"
 ln -sf "$DOTFILES/path.zsh" "$HOME/.oh-my-zsh/custom/path.zsh"
 echo "Linked Oh My Zsh custom files"
-
-# Starship config
-mkdir -p "$HOME/.config"
-ln -sf "$DOTFILES/starship.toml" "$HOME/.config/starship.toml"
-echo "Linked starship.toml"
 
 # Ghostty config
 mkdir -p "$HOME/.config/ghostty"
