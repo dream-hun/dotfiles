@@ -87,7 +87,7 @@ brew bundle --file "$DOTFILES/Brewfile.linux"
 [ ! -f "$HOME/.hushlogin" ] && touch "$HOME/.hushlogin"
 
 # Create Sites directories
-mkdir -p "$HOME/Sites/Tests"
+mkdir -p "$HOME/Sites/Ui"
 mkdir -p "$HOME/Sites/Packages"
 mkdir -p "$HOME/Sites/Forks"
 
